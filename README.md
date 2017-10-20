@@ -19,13 +19,13 @@ __retriable-promise__ exports a function that accepts a Promise-returning
 function and an options object, returning a new function that decorates the
 given one with retry logic:
 
-    retriable(func, options)
+    retriable(func, options) → Function
 
 ```js
 const retriable = require('retriable-promise');
 const api = require('./my-api-module');
 
-const fetchStuff = retriable(api.fetchStuff, {
+const fetchStuffWithRetries = retriable(api.fetchStuff, {
   // Retry 3 times, delayed 0/500/1000 ms respectively
   retries: [0, 500, 1000],
 
@@ -34,6 +34,10 @@ const fetchStuff = retriable(api.fetchStuff, {
     return err.statusCode === 429;
   }
 });
+
+fetchStuffWithRetries(/* any args to original function */)
+  .then(/* on success */)
+  .catch(/* on failure */);
 ```
 
 ## Available Options
