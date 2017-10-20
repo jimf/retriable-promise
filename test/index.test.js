@@ -10,7 +10,8 @@ function reject (value) {
   return { type: 'reject', value }
 }
 
-function createCallback (results, P = Promise) {
+function createCallback (results, P) {
+  P = P || Promise
   var cb = function () {
     var result = results.shift()
     var args = Array.prototype.slice.call(arguments)
