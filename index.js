@@ -6,6 +6,7 @@ function T () { return true }
  * @param {function} fn A Promise-returning function
  * @param {object} opts Configuration options
  * @param {number[]} opts.retries Array of retry delay timeouts (in ms)
+ * @param {function} [opts.when] Predicate function that returns whether failure should retry
  * @param {function} [opts.Promise] Promise implementation (defaults to native)
  * @return {function}
  */
