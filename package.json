@@ -1,0 +1,40 @@
+{
+  "name": "retriable-promise",
+  "version": "0.1.0",
+  "description": "Add retry logic to a promise-returning function",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jimf/retriable-promise"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "coveralls": "coveralls < coverage/lcov.info",
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "test": "nyc tape test/*.js"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "keywords": [],
+  "author": "Jim Fitzpatrick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimf/retriable-promise/issues"
+  },
+  "homepage": "https://github.com/jimf/retriable-promise",
+  "dependencies": {},
+  "devDependencies": {
+    "bluebird": "^3.5.1",
+    "coveralls": "^3.0.0",
+    "nyc": "^11.2.1",
+    "standard": "^10.0.3",
+    "tape": "^4.8.0"
+  }
+}
