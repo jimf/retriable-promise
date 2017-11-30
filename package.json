@@ -22,7 +22,13 @@
       "text"
     ]
   },
-  "keywords": [],
+  "keywords": [
+    "promise",
+    "retry",
+    "repeat",
+    "replay",
+    "backoff"
+  ],
   "author": "Jim Fitzpatrick",
   "license": "MIT",
   "bugs": {
