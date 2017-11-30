@@ -56,8 +56,8 @@ An npm search brings up half a dozen retry libraries, if not more.
 [promise-retry](https://www.npmjs.com/package/promise-retry) has hundreds of
 thousands of downloads. Why not use one of those? Well, for me, I wanted
 something more lightweight. In my experience, the retry logic I typically add
-is finite and well understood. Most often, it's retry up to three times, with
-some form of linear or exponential backoff. This doesn't require any sort of
+is finite and well understood. Most often, it's _retry up to three times, with
+some form of linear or exponential backoff_. This doesn't require any sort of
 algorithms to work out how and when the retries should be invoked. With such a
 small number, it's trivial to figure out how long to wait and list out the
 delays manually. This concept is simple, but deceivingly capable, as you have
