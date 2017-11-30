@@ -7,6 +7,15 @@ Add retry logic to a Promise-returning function.
 [![Test Coverage][coverage-badge]][coverage-result]
 [![Dependency Status][dep-badge]][dep-status]
 
+__Features__
+
+- __Composable.__ By wrapping your existing functions, retry logic is easily
+  integrated into your applications.
+- __Simple.__ The API surface area is minimal but powerful.
+- __Tiny.__ 0 external dependencies. < 30 LOC.
+- __Flexible.__ Works with Bluebird, jQuery, RSVP, and pretty much every other
+  Promise library out there.
+
 ## Installation
 
 Install using [npm][]:
@@ -25,20 +34,37 @@ given one with retry logic:
 const retriable = require('retriable-promise');
 const api = require('./my-api-module');
 
-const fetchStuffWithRetries = retriable(api.fetchStuff, {
+// Create a new function that wraps your existing function with retry logic.
+const fetchTweetsWithRetries = retriable(api.fetchTweets, {
   // Retry 3 times, delayed 0/500/1000 ms respectively
   retries: [0, 500, 1000],
 
-  // Only when the status code is 429
+  // Only when the status code is 429 Too Many Requests
   when(err) {
     return err.statusCode === 429;
   }
 });
 
-fetchStuffWithRetries(/* any args to original function */)
+fetchTweetsWithRetries(/* any args to original function */)
   .then(/* on success */)
   .catch(/* on failure */);
 ```
+
+## Why Another Retry Library?
+
+An npm search brings up half a dozen retry libraries, if not more.
+[promise-retry](https://www.npmjs.com/package/promise-retry) has hundreds of
+thousands of downloads. Why not use one of those? Well, for me, I wanted
+something more lightweight. In my experience, the retry logic I typically add
+is finite and well understood. Most often, it's retry up to three times, with
+some form of linear or exponential backoff. This doesn't require any sort of
+algorithms to work out how and when the retries should be invoked. With such a
+small number, it's trivial to figure out how long to wait and list out the
+delays manually. This concept is simple, but deceivingly capable, as you have
+the flexibility to devise _any_ discrete series of timeouts. This is what
+primarily drove the API I came up with. Secondarily, I needed a
+jQuery-compatible solution that could easily decorate existing functions and
+methods.
 
 ## Available Options
 
